@@ -293,7 +293,7 @@ button {
 
 .widget-main {
   display: grid;
-  padding: 18px
+  padding: 18px;
   gap: var(--space-6);
   min-height: 156px;
 }
