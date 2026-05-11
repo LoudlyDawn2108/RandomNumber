@@ -178,23 +178,29 @@ function handleBlur() {
   commitRange(range);
 }
 
-function animateRoll(min, max, finalValue, duration = 300, interval = 30) {
+function animateRoll(finalValue, duration = 420) {
   return new Promise((resolve) => {
     const start = performance.now();
+    const startValue = state.result;
+    const distance = Math.abs(finalValue - startValue);
+    const direction = finalValue >= startValue ? 1 : -1;
     resultNode.classList.add("is-rolling");
 
     const tick = () => {
-      const elapsed = performance.now() - start;
-      if (elapsed >= duration) {
+      const elapsed = Math.min(performance.now() - start, duration);
+      const progress = duration ? elapsed / duration : 1;
+
+      if (progress >= 1 || !distance) {
         resultNode.textContent = String(finalValue);
         resultNode.classList.remove("is-rolling");
         resolve();
         return;
       }
-      const span = max - min + 1;
-      const preview = min + Math.floor(Math.random() * span);
+
+      const traveled = Math.floor(progress * distance);
+      const preview = startValue + direction * traveled;
       resultNode.textContent = String(preview);
-      setTimeout(tick, interval);
+      requestAnimationFrame(tick);
     };
 
     tick();
@@ -226,7 +232,7 @@ async function handleSubmit(event) {
 
   const nextValue = chooseAllowedValue(state.min, state.max);
   state.isAnimating = true;
-  await animateRoll(state.min, state.max, nextValue);
+  await animateRoll(nextValue);
   state.result = nextValue;
   state.isAnimating = false;
 }
