@@ -178,7 +178,7 @@ function handleBlur() {
   commitRange(range);
 }
 
-function animateRoll(finalValue, duration = 420) {
+function animateRoll(finalValue, duration = 220) {
   return new Promise((resolve) => {
     const start = performance.now();
     const startValue = state.result;
