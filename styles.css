@@ -315,13 +315,13 @@ button {
 }
 
 .random-value.is-rolling {
-  opacity: 0.7;
-  animation: rollPulse 0.12s ease-in-out infinite alternate;
+  opacity: 1;
+  animation: rollPulse 0.2s ease-in-out infinite alternate;
 }
 
 @keyframes rollPulse {
-  from { transform: translateY(-2px); }
-  to { transform: translateY(2px); }
+  from { transform: translateY(-1px) scale(0.995); }
+  to { transform: translateY(1px) scale(1.005); }
 }
 
 .control-panel {
