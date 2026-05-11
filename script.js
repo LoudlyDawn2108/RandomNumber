@@ -184,13 +184,20 @@ function animateRoll(finalValue, duration = 420) {
     const startValue = state.result;
     const distance = Math.abs(finalValue - startValue);
     const direction = finalValue >= startValue ? 1 : -1;
+
+    if (!distance) {
+      resultNode.textContent = String(finalValue);
+      resolve();
+      return;
+    }
+
     resultNode.classList.add("is-rolling");
 
     const tick = () => {
       const elapsed = Math.min(performance.now() - start, duration);
       const progress = duration ? elapsed / duration : 1;
 
-      if (progress >= 1 || !distance) {
+      if (progress >= 1) {
         resultNode.textContent = String(finalValue);
         resultNode.classList.remove("is-rolling");
         resolve();
