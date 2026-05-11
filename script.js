@@ -195,7 +195,7 @@ function animateRoll(finalValue, duration = 420) {
 
     const tick = () => {
       const elapsed = Math.min(performance.now() - start, duration);
-      const progress = duration ? elapsed / duration : 1;
+      const progress = elapsed / duration;
 
       if (progress >= 1) {
         resultNode.textContent = String(finalValue);
