@@ -294,6 +294,7 @@ button {
 .widget-main {
   display: grid;
   padding: 18px;
+  grid-template-columns: minmax(0, 1.45fr) minmax(200px, 0.8fr);
   gap: var(--space-6);
   min-height: 156px;
 }
@@ -764,7 +765,6 @@ button {
   }
 
   .widget-main {
-    grid-template-columns: 1fr;
     gap: var(--space-5);
   }
 
