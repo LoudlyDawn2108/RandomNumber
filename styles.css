@@ -308,8 +308,10 @@ button {
 
 .random-value {
   color: var(--color-text-strong);
+  font-family: var(--font-sans);
   font-size: 54px;
   font-weight: 400;
+  font-variant-numeric: tabular-nums;
   line-height: 0.92;
   letter-spacing: -0.05em;
 }
